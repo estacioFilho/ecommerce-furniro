@@ -1,9 +1,9 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
-import { CategoryEntity } from './category.entity';
+import { CategoryEntity } from '../../category/entities/category.entity';
 
-@Entity()
+@Entity({ name: 'products' })
 export class ProductEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: number;
 
   @Column({
@@ -44,7 +44,6 @@ export class ProductEntity {
   @Column({
     type: 'text',
     array: true,
-    length: 4,
   })
   images: string[];
 
@@ -52,7 +51,6 @@ export class ProductEntity {
     type: 'text',
     array: true,
     nullable: true,
-    length: 5,
   })
   reviews: string[];
 
