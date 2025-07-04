@@ -5,27 +5,32 @@ import {
   IsBoolean,
   IsArray,
   IsEnum,
-  IsUUID,
   IsUrl,
+  IsPositive,
+  MaxLength,
 } from 'class-validator';
 
 export class CreateProductDTO {
   @IsString()
+  @MaxLength(30)
   name: string;
 
   @IsNumber()
   price: number;
 
   @IsString()
+  @MaxLength(255)
   smallDescription: string;
 
   @IsString()
   description: string;
 
   @IsString()
+  @MaxLength(100)
   subtitle: string;
 
   @IsString()
+  @MaxLength(9)
   sku: string;
 
   @IsOptional()
@@ -40,10 +45,9 @@ export class CreateProductDTO {
   @IsString({ each: true })
   images: string[];
 
-  @IsOptional()
   @IsArray()
-  @IsString({ each: true })
-  reviews?: string[];
+  @IsNumber({}, { each: true })
+  reviews: number[];
 
   @IsEnum(['L', 'XL', 'XS'])
   size: 'L' | 'XL' | 'XS';
@@ -52,15 +56,15 @@ export class CreateProductDTO {
   @IsString({ each: true })
   colors: string[];
 
-  @IsOptional()
   @IsArray()
   @IsString({ each: true })
-  tags?: string[];
+  tags: string[];
 
-  @IsOptional()
-  @IsUrl()
-  shareLink?: string;
+  @IsArray()
+  @IsString({ each: true })
+  shareLink: string[];
 
-  @IsUUID()
-  categoryId: string;
+  @IsNumber()
+  @IsPositive()
+  categoryId: number;
 }

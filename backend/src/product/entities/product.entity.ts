@@ -3,7 +3,7 @@ import { CategoryEntity } from '../../category/entities/category.entity';
 
 @Entity({ name: 'products' })
 export class ProductEntity {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn()
   id: number;
 
   @Column({
@@ -38,7 +38,7 @@ export class ProductEntity {
   @Column('decimal', { nullable: true })
   discount: number;
 
-  @Column({ default: true })
+  @Column({ default: false })
   isNew: boolean;
 
   @Column({
@@ -52,7 +52,7 @@ export class ProductEntity {
     array: true,
     nullable: true,
   })
-  reviews: string[];
+  reviews: number[];
 
   @Column({
     type: 'enum',
@@ -61,23 +61,26 @@ export class ProductEntity {
   size: 'L' | 'XL' | 'XS';
 
   @Column({
-    type: 'varchar',
-    length: 9,
+    type: 'text',
     array: true,
   })
   colors: string[];
 
   @Column({
-    type: 'varchar',
-    length: 30,
+    type: 'text',
     array: true,
-    nullable: true,
   })
   tags: string[];
 
-  @Column({ nullable: true })
-  shareLink: string;
+  @Column({
+    type: 'text',
+    array: true
+  })
+  shareLink: string[];
 
-  @ManyToOne(() => CategoryEntity, (category) => category.name)
+  @Column({ default: false })
+  isDisabled: boolean;
+
+  @ManyToOne(() => CategoryEntity, (category) => category.products)
   category: CategoryEntity;
 }
