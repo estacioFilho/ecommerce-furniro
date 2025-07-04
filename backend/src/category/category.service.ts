@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CategoryEntity } from './entities/category.entity';
@@ -18,10 +18,13 @@ export class CategoryService {
   }
 
   async findAll() {
-    return this.categoryRepository.find();
+    return this.categoryRepository.find({
+      where: { isDisabled: false },
+    });
   }
 
   async findOne(id: number) {
+    await this.exists(id);
     return this.categoryRepository.findOne({
       where: { id },
     });
@@ -30,5 +33,27 @@ export class CategoryService {
   async update(id: number, data: UpdateCategoryDTO) {
     await this.categoryRepository.update(id, data);
     return this.findOne(id);
+  }
+
+  async delete(id: number) {
+    await this.exists(id);
+    const category = await this.findOne(id);
+    if (category) {
+      category.isDisabled = true;
+      await this.categoryRepository.save(category);
+      return { message: `Category ${id} has been deleted` };
+    }
+  }
+
+  async exists(id: number) {
+    if (
+      !(await this.categoryRepository.count({
+        where: {
+          id,
+        },
+      }))
+    ) {
+      throw new NotFoundException(`Category with ${id} does not exist`);
+    }
   }
 }

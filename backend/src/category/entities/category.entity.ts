@@ -11,7 +11,9 @@ export class CategoryEntity {
     length: 30,
   })
   name: string;
+  @Column({ default: false })
+  isDisabled: boolean;
 
   @OneToMany(() => ProductEntity, (product) => product.category)
-  product: ProductEntity[];
+  products: ProductEntity[];
 }
