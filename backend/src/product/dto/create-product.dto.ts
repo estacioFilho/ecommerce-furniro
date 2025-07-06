@@ -8,6 +8,7 @@ import {
   IsUrl,
   IsPositive,
   MaxLength,
+  isBoolean,
 } from 'class-validator';
 
 export class CreateProductDTO {

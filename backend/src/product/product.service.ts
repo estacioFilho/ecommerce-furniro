@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException, Query, Get, ParseIntPipe } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ProductEntity } from './entities/product.entity';
@@ -33,40 +33,72 @@ export class ProductService {
     return this.productRepository.save(product);
   }
 
-  @Get()
   async find(
-    @Query('page', new ParseIntPipe({ errorHttpStatusCode: 422})) page = 1,
-    @Query('limit', new ParseIntPipe({ errorHttpStatusCode: 422})) limit = 10,
+    page: number,
+    limit: number,
+    categoryName?: string,
   ) {
-    
-    const offSet = (page - 1) * limit
-
-    const products = await this.productRepository
-      .createQueryBuilder('product')
-      .limit(limit)
-      .offset(offSet)
-      .getMany();
-    return products;
+    limit = Math.min(limit, 100);
+    const skip = (page - 1) * limit;
+  
+    const where: any = { isDisabled: false };
+  
+    if (categoryName) {
+      const category = await this.categoryRepository.findOneBy({ name: categoryName });
+      if (!category) {
+        throw new NotFoundException(`Category "${categoryName}" not found.`);
+      }
+      where.category = { id: category.id };
+    }
+  
+    const [data, total] = await this.productRepository.findAndCount({
+      where,
+      relations: ['category'], 
+      take: limit,
+      skip,
+    });
+  
+    return {
+      total,
+      page,
+      limit,
+      data,
+    };
   }
+  
 
   async findOne(id: number) {
     await this.exists(id);
     return this.productRepository.findOne({
       where: { id },
-      relations: ['category'],
+      relations: ['category']
     });
   }
 
   async update(id: number, data: UpdateProductDTO) {
-    await this.exists(id);
-    await this.productRepository.update(id, data);
-    return this.findOne(id);
+    await this.exists(id)
+    const product = await this.productRepository.findOne({
+      where: { id },
+      relations: ['category'],
+    });
+    if (!product) throw new NotFoundException(`Product ${id} not found`);
+  
+    Object.assign(product, data);
+
+    if (data.categoryId) {
+      const category = await this.categoryRepository.findOneBy({ id: data.categoryId });
+      if (!category) throw new NotFoundException(`Category ${data.categoryId} not found`);
+      product.category = category;
+    }
+  
+    return this.productRepository.save(product);
   }
+  
 
   async partialUpdate(id: number, data: Partial<UpdateProductDTO>) {
     await this.exists(id);
     await this.productRepository.update(id, data);
-    return this.findOne(id);
+    return data;
   }
 
   async delete(id: number) {
@@ -74,7 +106,7 @@ export class ProductService {
     const product = await this.findOne(id);
     if (product) {
       product.isDisabled = true;
-      await this.productRepository.save(product);
+      await this.productRepository.remove(product);
       return { message: `Product ${id} has been deleted` };
     }
   }
@@ -87,7 +119,7 @@ export class ProductService {
         },
       }))
     ) {
-      throw new NotFoundException(`Category with ${id} does not exist`);
+      throw new NotFoundException(`Product does not exist`);
     }
   }
 }
