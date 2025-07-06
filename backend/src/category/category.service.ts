@@ -23,10 +23,13 @@ export class CategoryService {
     });
   }
 
-  async findOne(id: number) {
+  async findOne(id: number, nameCategory?: string) {
     await this.exists(id);
     return this.categoryRepository.findOne({
-      where: { id },
+      where: { 
+        id,
+        name: nameCategory
+       },
     });
   }
 
