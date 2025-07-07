@@ -1,12 +1,11 @@
-import { Link } from "react-router"
+import Hero from "./components/Hero"
 
 function App() {
 
   return (
-    <div>
-      <h1>Home Page</h1>
-      <Link to='/shop'>Go to Page Shop</Link>
-    </div>
+    <main>
+      <Hero />
+    </main>
   )
 }
 
