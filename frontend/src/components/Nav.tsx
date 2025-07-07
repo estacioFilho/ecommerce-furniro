@@ -4,6 +4,7 @@ import iconCart from '../assets/icon-cart.svg';
 import iconHeart from '../assets/icons-heart.svg';
 import iconSearch from '../assets/icons-search.svg';
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const itensMenu: string[] = ['home', 'shop', 'about', 'contact']
 const itensIcons: string[] = [iconAccount, iconSearch, iconHeart, iconCart]
 
