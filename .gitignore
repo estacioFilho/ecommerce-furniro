@@ -37,6 +37,7 @@ backend/.idea
 
 # dotenv environment variable files
 backend/.env
+backend/.env-exemp
 backend/.env.development.local
 backend/.env.test.local
 backend/.env.production.local
