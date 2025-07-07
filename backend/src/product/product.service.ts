@@ -82,15 +82,12 @@ export class ProductService {
       relations: ['category'],
     });
     if (!product) throw new NotFoundException(`Product ${id} not found`);
-  
     Object.assign(product, data);
-
     if (data.categoryId) {
       const category = await this.categoryRepository.findOneBy({ id: data.categoryId });
       if (!category) throw new NotFoundException(`Category ${data.categoryId} not found`);
       product.category = category;
     }
-  
     return this.productRepository.save(product);
   }
   
