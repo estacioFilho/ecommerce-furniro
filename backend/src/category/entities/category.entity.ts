@@ -14,6 +14,10 @@ export class CategoryEntity {
   @Column({ default: false })
   isDisabled: boolean;
 
+  @Column({ type: 'text'})
+  image: string;
+
+
   @OneToMany(() => ProductEntity, (product) => product.category)
   products: ProductEntity[];
 }
