@@ -11,6 +11,10 @@ export class CategoryEntity {
     length: 30,
   })
   name: string;
+
+  @Column({type: 'text', nullable: true})
+  image: string;
+
   @Column({ default: false })
   isDisabled: boolean;
 
