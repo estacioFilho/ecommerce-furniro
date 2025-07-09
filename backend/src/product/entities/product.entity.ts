@@ -12,8 +12,9 @@ export class ProductEntity {
   })
   name: string;
 
-  @Column('decimal')
+  @Column({ type: 'decimal', precision: 10, scale: 2 })
   price: number;
+
 
   @Column({ type: 'varchar', length: 255 })
   smallDescription: string;
