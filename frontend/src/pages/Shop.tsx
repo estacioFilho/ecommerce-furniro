@@ -1,18 +1,23 @@
-import FilterAndOrder from "@/components/FilterAndOrder"
-import OurDifferential from "@/components/OurDifferential"
-import ShopHero from "@/components/ShopHero"
-// import { Link } from "react-router"
+'use client'
+import { useState } from 'react';
+import FilterAndOrder from '../components/FilterAndOrder';
+import ProductList from '../components/ProductList';
+import { Pagination } from '../components/Pagination';
+import ShopHero from '@/components/ShopHero';
 
-
-
-const Shop = () => {
+const PageShop = () => {
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(16);
+  const [order, setOrder] = useState('default');
+  
   return (
-    <main>
+    <div>
       <ShopHero />
-      <FilterAndOrder />
-      <OurDifferential />
-    </main>
-  )
-}
+      <FilterAndOrder order={order} onOrderChange={setOrder} limit={limit} onLimitChange={setLimit} />
+      <ProductList page={page} limit={limit} />
+      <Pagination page={page} pageTotal={3} onPageChange={setPage} />
+    </div>
+  );
+};
 
-export default Shop
+export default PageShop;
