@@ -10,6 +10,10 @@
   --color-dark: #000000;
   --color-gray-title: #333333;
   --color-gray-text: #898989;
+  --color-red-accents: #E97171;
+  --color-green-accents: #2EC1AC;
+  --color-dark-bg: #73717199;
+
   --text-sm: clamp(1.5rem,2.5vw, 2.125rem)
   
 
