@@ -6,6 +6,7 @@ import Shop from './pages/Shop.tsx'
 import Header from './components/Header.tsx'
 import PageNotFound from './PageNotFound.tsx'
 import Footer from './components/Footer.tsx'
+import SingleProduct from './pages/SingleProduct.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
@@ -14,6 +15,7 @@ createRoot(document.getElementById('root')!).render(
       <Route index path='/' element={<Home />} />
       <Route index path='shop' element={<Shop />} />
       <Route path='*' element={<PageNotFound />} />
+      <Route path='/single-product/*' element={<SingleProduct />} />
     </Routes>
     <Footer />
   </BrowserRouter>

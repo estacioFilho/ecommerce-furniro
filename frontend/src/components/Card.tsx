@@ -2,6 +2,7 @@ import type Product from "@/types/product.type"
 import iconShare from '../assets/icon-share.png'
 import iconCompare from '../assets/icon-compare.png'
 import iconHeart from '../assets/icon-heart.png'
+import { Link } from "react-router";
 
 interface CardProps {
   product: Product;
@@ -10,11 +11,14 @@ interface CardProps {
 const Card = ({ product }: CardProps) => {
   const price: number = Number(product.price)
 
+  
   return (
     <li className='max-w-[285px] max-h-[446px] py-4 relative'>
       <div className='bg-dark-bg  flex flex-col justify-center items-center gap-4 absolute z-50 w-full h-full opacity-0 hover:opacity-100 duration-300'>
-          <button className='bg-light text-secondary py-[0.8rem] px-[3rem] text-[1rem] font-semibold'>See Details</button>
-          <ul className='flex item-center gap-4 [&>li]:flex [&>li]:items-center [&>li]:gap-1 [&>li>p]:text-[1rem] [&>li>p]:text-light [&>li>p]:font-semibold'>
+          <Link 
+          to={`/single-product/*`}
+          className='bg-light cursor-pointer text-secondary py-[0.8rem] px-[3rem] text-[1rem] font-semibold'>See Details</Link>
+          <ul className='flex item-center gap-4 [&>li]:cursor-pointer [&>li]:flex [&>li]:items-center [&>li]:gap-1 [&>li>p]:text-[1rem] [&>li>p]:text-light [&>li>p]:font-semibold'>
             <li>
               <img src={iconShare} alt="The icone share" />
               <p>Share</p>

@@ -5,7 +5,7 @@ type TitleProps = {
 
 const SectionTitle = ({className, text} : TitleProps) => {
   return (
-    <h1 className={className}>{text}</h1>
+    <h1 className={`${className} text-3xl text-center my-15 font-bold text-gray-title`}>{text}</h1>
   )
 }
 
