@@ -1,10 +1,15 @@
-import { IsString } from 'class-validator';
+
+import { IsString, IsOptional, IsBoolean, IsNumber, IsPositive } from 'class-validator';
 
 export class CreateCategoryDTO {
   @IsString()
   name: string;
-  
-  @IsString()
-  image: string;
 
+  @IsOptional()
+  @IsBoolean()
+  isDisabled: boolean;
+
+  @IsNumber()
+  @IsPositive()
+  rangeId: number;
 }
