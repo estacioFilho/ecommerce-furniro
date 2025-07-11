@@ -26,14 +26,18 @@ export class ProductService {
         `Category with id ${data.categoryId} not found`,
       );
     }
-
+  
+    const priceWithDiscount = Number(data.price) - Number(data.price) * Number(data.discount);
+  
     const product = this.productRepository.create({
       ...data,
       category,
+      priceWithDiscount,
     });
-
+  
     return this.productRepository.save(product);
   }
+  
 
   async find(filter: ProductFilterParams): Promise<ProductPaginate> {
     const { page, limit: rawLimit, category, priceMin, priceMax, isNew, discount } = filter;

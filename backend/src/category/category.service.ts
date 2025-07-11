@@ -12,14 +12,25 @@ export class CategoryService {
     private readonly categoryRepository: Repository<CategoryEntity>,
   ) {}
 
-  async create(data: CreateCategoryDTO) {
-    const category = this.categoryRepository.create(data);
-    return this.categoryRepository.save(category);
+  async create(createCategoryDto: CreateCategoryDTO): Promise<{ message: string; data: CategoryEntity }> {
+    const category = this.categoryRepository.create({
+      name: createCategoryDto.name,
+      isDisabled: createCategoryDto.isDisabled,
+      range: { id: Number(createCategoryDto.rangeId) }, 
+    });
+  
+    const savedCategory = await this.categoryRepository.save(category);
+  
+    return {
+      message: `Category '${savedCategory.name}' created successfully`,
+      data: savedCategory,
+    };
   }
 
   async findAll() {
     return this.categoryRepository.find({
       where: { isDisabled: false },
+      relations: ['range'],
     });
   }
 

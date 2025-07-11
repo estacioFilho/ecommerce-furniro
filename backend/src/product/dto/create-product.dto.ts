@@ -1,60 +1,76 @@
 import {
   IsString,
   IsNumber,
-  IsOptional,
   IsBoolean,
   IsArray,
-  IsEnum,
-  IsUrl,
+  ArrayMaxSize,
+  ArrayMinSize,
+  IsOptional,
+  IsIn,
   IsPositive,
+  IsHexColor,
+  Min,
+  Max,
   MaxLength,
-  isBoolean,
 } from 'class-validator';
 
 export class CreateProductDTO {
   @IsString()
-  @MaxLength(30)
+  @MaxLength(15)
   name: string;
 
   @IsNumber()
+  @IsPositive()
   price: number;
 
+  @IsNumber()
+  @IsPositive()
+  priceWithDiscount: number;
+  
   @IsString()
-  @MaxLength(255)
   smallDescription: string;
 
   @IsString()
   description: string;
 
+  @IsOptional()
   @IsString()
-  @MaxLength(100)
+  @MaxLength(26)
   subtitle: string;
 
   @IsString()
-  @MaxLength(9)
   sku: string;
 
-  @IsOptional()
-  @IsNumber()
-  discount?: number;
+  @IsNumber({ maxDecimalPlaces: 2 })
+  @Min(0)
+  @Max(1)
+  discount: number;
 
-  @IsOptional()
   @IsBoolean()
-  isNew?: boolean;
+  isNew: boolean;
 
   @IsArray()
+  @ArrayMinSize(1)
+  @ArrayMaxSize(10)
   @IsString({ each: true })
   images: string[];
 
   @IsArray()
+  @ArrayMaxSize(15)
   @IsNumber({}, { each: true })
+  @Min(0, { each: true })
   reviews: number[];
 
-  @IsEnum(['L', 'XL', 'XS'])
-  size: 'L' | 'XL' | 'XS';
+  @IsArray()
+  @ArrayMinSize(1)
+  @ArrayMaxSize(4)
+  @IsIn(['S', 'M', 'L', 'XL'], { each: true })
+  size: string[];
 
   @IsArray()
-  @IsString({ each: true })
+  @ArrayMinSize(2)
+  @ArrayMaxSize(3)
+  @IsHexColor({ each: true })
   colors: string[];
 
   @IsArray()
@@ -62,10 +78,14 @@ export class CreateProductDTO {
   tags: string[];
 
   @IsArray()
+  @ArrayMinSize(3)
+  @ArrayMaxSize(3)
   @IsString({ each: true })
   shareLink: string[];
 
+  @IsBoolean()
+  isDisabled: boolean;
+
   @IsNumber()
-  @IsPositive()
   categoryId: number;
 }
