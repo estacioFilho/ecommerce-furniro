@@ -8,9 +8,12 @@ interface ProductListProps {
   limit?: number;
 }
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 const ProductList = ({ page, limit }: ProductListProps) => {
+
   const { data, loading, error } = useFetch<ProductResponse>(
-    `http://localhost:3000/products?page=${page}&limit=${limit}`
+    `${apiUrl}/products?page=${page}&limit=${limit}`
   );
 
   if (loading) return <p>Loalding...</p>;
