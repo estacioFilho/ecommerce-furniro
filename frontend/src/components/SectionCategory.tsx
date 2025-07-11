@@ -7,8 +7,11 @@ type Category = {
   name: string;
   image: string;
 }
+
+const apiUrl = import.meta.env.VITE_API_URL;
+
 const SectionCategory = () => {
-  const { data: dataCategory, loading, error } = useFetch<Category[]>('http://localhost:3000/category')
+  const { data: dataCategory, loading, error } = useFetch<Category[]>(`${apiUrl}/ranges`)
 
 
   if (loading) return <p>Carregando...</p>;
@@ -24,7 +27,7 @@ const SectionCategory = () => {
             <Link key={item.id} to={`/shop?${item.name}`}>
               <li className='flex flex-col gap-7'>
                 <img src={item.image} alt="" />
-                <h3 className='text-2xl font-semibold text-center '>{item.name}</h3>
+                <h3 className='text-2xl font-semibold text-center capitalize '>{item.name}</h3>
               </li>
             </Link>
           )

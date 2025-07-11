@@ -15,7 +15,7 @@ createRoot(document.getElementById('root')!).render(
       <Route index path='/' element={<Home />} />
       <Route index path='shop' element={<Shop />} />
       <Route path='*' element={<PageNotFound />} />
-      <Route path='/single-product/*' element={<SingleProduct />} />
+      <Route path='/single-product/:id' element={<SingleProduct />} />
     </Routes>
     <Footer />
   </BrowserRouter>

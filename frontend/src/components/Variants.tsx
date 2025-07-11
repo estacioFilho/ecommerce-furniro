@@ -28,7 +28,7 @@ const Variants = ({ size = [], color = [] }: Variant) => {
             onClick={() => setActiveColor(item)}
             className={`border-none w-[30px] h-[30px] rounded-full
               ${item === activeColor ? 'ring-2 ring-dark' : ''}`}
-            style={{ backgroundColor: `#${item}` }}
+            style={{ backgroundColor: `${item}` }}
           ></button>
         </li>
       ))}
