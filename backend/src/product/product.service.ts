@@ -26,21 +26,21 @@ export class ProductService {
         `Category with id ${data.categoryId} not found`,
       );
     }
-  
+
     const priceWithDiscount = Number(data.price) - Number(data.price) * Number(data.discount);
-  
+
     const product = this.productRepository.create({
       ...data,
       category,
       priceWithDiscount,
     });
-  
+
     return this.productRepository.save(product);
   }
-  
+
 
   async find(filter: ProductFilterParams): Promise<ProductPaginate> {
-    const { page, limit: rawLimit, category, priceMin, priceMax, isNew, discount } = filter;
+    const { page, limit: rawLimit, order, category, priceMin, priceMax, isNew, discount } = filter;
 
     const limit = Math.min(rawLimit, 100);
     const skip = (page - 1) * limit;
@@ -58,7 +58,7 @@ export class ProductService {
     }
 
     if (typeof isNew === 'boolean') {
-      query.andWhere('product.isNew = :isNew', { isNew });
+      query.andWhere('product.isNew = :isNew AND product.discount = 0', { isNew });
     }
 
     if (discount) {
@@ -66,11 +66,17 @@ export class ProductService {
     }
 
     if (typeof priceMin === 'number') {
-      query.andWhere('product.price >= :priceMin', { priceMin });
+      query.andWhere('product.priceWithDiscount >= :priceMin', { priceMin });
     }
 
     if (typeof priceMin === 'number') {
-      query.andWhere('product.price <= :priceMax', { priceMax });
+      query.andWhere('product.priceWithDiscount <= :priceMax', { priceMax });
+    }
+
+    if(order == 'asc'){
+      query.orderBy('product.priceWithDiscount', 'ASC')
+    }else if (order == 'desc'){
+      query.orderBy('product.priceWithDiscount', 'DESC')
     }
 
 

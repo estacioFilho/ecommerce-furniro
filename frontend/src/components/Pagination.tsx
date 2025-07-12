@@ -1,13 +1,13 @@
 interface PaginationProps {
   page: number;
-  pageTotal: number;
+  pageTotal: number | undefined;
   onPageChange: (newPage: number) => void;
 }
 
 export const Pagination = ({ page, pageTotal, onPageChange }: PaginationProps) => {
   return (
-    <div className='flex items-center justify-between max-w-[392px] my-8 mx-auto'>
-      <ul className='flex items-center justify-between w-[65%]'>
+    <div className='flex items-center justify-center gap-4 lg:max-w-[1000px] my-8 mx-auto'>
+      <ul className='flex flex-wrap items-center  gap-4'>
         {[...Array(pageTotal)].map((_, index) => {
           const pageNum = index + 1;
           return (
@@ -21,9 +21,10 @@ export const Pagination = ({ page, pageTotal, onPageChange }: PaginationProps) =
             </li>
           );
         })}
+        
       </ul>
       <button
-        onClick={() => onPageChange(Math.min(page + 1, pageTotal))}
+        onClick={() => onPageChange(Math.min(page + 1, pageTotal?? 1))}
         className='bg-primary text-gray-title text-[20px] rounded-[10px] w-[98px] h-[60px]'
       >
         Next

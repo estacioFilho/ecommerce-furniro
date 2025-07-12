@@ -7,7 +7,7 @@ const Header = () => {
     <header className="flex items-center justify-between px-[1rem] lg:px-[3rem] py-[1rem]">
       <Link to='/' className="flex items-center lg:gap-3 gap-2 w-[30%]">
         <img className='lg:w-[50px] w-[40px]' src="/logo.svg" alt="" />
-        <h1 className="text-sm font-bold ">Furniro</h1>
+        <h1 className="text-sM font-bold ">Furniro</h1>
       </Link>
       <div className='hidden lg:flex w-[70%] justify-between'>
         <Nav />
