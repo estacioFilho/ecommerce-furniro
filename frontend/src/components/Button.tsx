@@ -21,7 +21,7 @@ const Button = ({ hasAmountnt, text, className, toPath, variant = 'default', onC
     setCount(count - 1);
   };
   return (
-    <div>
+    <div className='flex justify-center mb-4'>
       {hasAmountnt && (
         <div className={`flex items-center justify-between max-w-[123px] ${className} button-${variant}`}>
           <button

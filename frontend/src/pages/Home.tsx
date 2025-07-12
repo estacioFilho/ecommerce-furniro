@@ -11,8 +11,8 @@ function Home () {
       <Hero />
       <SectionCategory />
       <SectionOurProducts />
-      <OurDifferential />
       <Button text="Show More" variant="primary" toPath="/shop" />
+      <OurDifferential />
     </main>
   )
 }
