@@ -8,7 +8,7 @@ const ShopHero = () => {
     <section className='relative'>
       <div
         className='absolute w-full h-full flex flex-col gap-4 items-center justify-center  text-[16px]'>
-        <h2 className='text-5xl font-medium '>Shop</h2>
+        <h2 className='text-sM font-medium '>Shop</h2>
         <div className='flex items-center gap-2'>
           <Link to='/' className='font-medium' >Homer</Link>
           <MdKeyboardArrowRight className='text-[20px]' />

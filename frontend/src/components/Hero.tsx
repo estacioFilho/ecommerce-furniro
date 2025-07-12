@@ -12,22 +12,10 @@ const Hero = () => {
         src={imgBanner}
         alt="living area image"
       />
-      <motion.div
-        className="lg:h-[300px] w-[443px]  absolute z-20 bottom-0 rounded-t-[10px] p-4 px-4 bg-primary flex justify-cente items-center"
-        initial={{
-          opacity: 0,
-          x: 1200
-        }}
-        animate={{
-          opacity: 1,
-          x: 950
-        }}
-        transition={{
-          duration: 1
-        }}
-      >
+      <div
+        className='w-full lg:max-w-[40%] max-w-[89%] h-[20vw]  absolute z-20 bottom-0 right-0 rounded-t-[10px] p-4 px-4 bg-primary flex items-center'>
         <motion.p
-          className="text-[1rem] w-[100%]  flex flex-wrap "
+          className="text-sm w-[100%]  flex flex-wrap "
           initial="hidden"
           animate="visible"
           variants={{
@@ -52,7 +40,7 @@ const Hero = () => {
             </motion.span>
           ))}
         </motion.p>
-      </motion.div>
+      </div>
     </section>
   )
 }

@@ -6,10 +6,11 @@ type ButtonProps = {
   text?: string;
   className?: string;
   toPath?: string;
-  variant?: 'default' | 'primary' | 'secondary';
+  variant?: 'default' | 'primary' | 'secondary' | 'filter';
+  onClick?: () => void;
 };
 
-const Button = ({ hasAmountnt, text, className, toPath, variant = 'default' }: ButtonProps) => {
+const Button = ({ hasAmountnt, text, className, toPath, variant = 'default', onClick }: ButtonProps) => {
   const [count, setCount] = useState<number>(1);
 
   const handleCountAdd = () => {
@@ -33,6 +34,9 @@ const Button = ({ hasAmountnt, text, className, toPath, variant = 'default' }: B
             className="h-full bg-transparent w-[100%/3] cursor-pointer">+</button>
         </div>
       )}
+      {text && !toPath &&(
+        <button onClick={onClick} className={`${className} button-${variant}`}>{text}</button>
+      )}
       {text && toPath && (
         <Link
           to={toPath}
@@ -40,6 +44,7 @@ const Button = ({ hasAmountnt, text, className, toPath, variant = 'default' }: B
           {text}
         </Link>
       )}
+     
     </div>
   );
 };

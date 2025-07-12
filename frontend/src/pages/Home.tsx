@@ -1,3 +1,4 @@
+import Button from "@/components/Button"
 import Hero from "../components/Hero"
 import OurDifferential from "../components/OurDifferential"
 import SectionCategory from "../components/SectionCategory"
@@ -11,6 +12,7 @@ function Home () {
       <SectionCategory />
       <SectionOurProducts />
       <OurDifferential />
+      <Button text="Show More" variant="primary" toPath="/shop" />
     </main>
   )
 }

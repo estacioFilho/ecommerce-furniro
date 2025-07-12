@@ -9,7 +9,7 @@ const Rating = ({ numberRating }: RatingProps) => {
   const fullStars = Math.floor(numberRating);
   const hasHalfStar = numberRating - fullStars >= 0.5;
   return (
-    <ul className="flex items-center text-[18px] gap-1 text-yellow-400">
+    <ul className="flex w-[100%/2] items-center text-[18px] gap-1 text-yellow-400">
       {Array.from({ length: fullStars }).map((_, idx) => (
         <li key={`full-${idx}`}>
           <IoStar />

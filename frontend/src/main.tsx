@@ -4,7 +4,7 @@ import './index.css'
 import Home from './pages/Home.tsx'
 import Shop from './pages/Shop.tsx'
 import Header from './components/Header.tsx'
-import PageNotFound from './PageNotFound.tsx'
+import PageNotFound from './pages/PageNotFound.tsx'
 import Footer from './components/Footer.tsx'
 import SingleProduct from './pages/SingleProduct.tsx'
 

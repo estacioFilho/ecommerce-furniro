@@ -36,11 +36,11 @@ const differentials: Differential[] = [
 const OurDifferential = () => {
   return (
     <section className='bg-primary'>
-      <ul className='px-[3rem] py-[4rem] flex items-center justify-between'>
+      <ul className='px-[3rem] py-[4rem] flex flex-col gap-6 lg:flex-row lg:gap-4 items-center justify-between'>
         {
           differentials.map((diff, index) => {
             return (
-              <li key={index} className='flex items-center gap-1.5'>
+              <li key={index} className='flex flex-col lg:flex-row lg:gap-2 items-center gap-4 w-[100%/4]'>
                 <img className='text-gray-title' src={diff.stamps} alt="" />
                 <div>
                   <h3 className='text-2xl font-semibold text-gray-title'>{diff.title}</h3>

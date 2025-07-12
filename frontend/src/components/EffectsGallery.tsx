@@ -4,11 +4,11 @@ type dataImagesProps = {
   dataImages: string[];
 }
 
-const EffectsGallery = ({dataImages}: dataImagesProps) => {
+const EffectsGallery = ({ dataImages }: dataImagesProps) => {
   const [featuredImage, setFeaturedImage] = useState<string>(dataImages[0]);
   return (
-    <div className='flex items-start gap-8 mt-[1rem]'>
-      <ul className='flex flex-col gap-8'>
+    <div className='flex flex-col lg:flex-row lg:items-start lg:px-0 items-center px-2 gap-8 mt-[1rem]'>
+      <ul className='flex gap-8 order-2 lg:flex-col lg:order-1 '>
         {dataImages?.map((image, index) => (
           <li
             key={index}
@@ -20,7 +20,10 @@ const EffectsGallery = ({dataImages}: dataImagesProps) => {
           </li>
         ))}
       </ul>
-      <img src={featuredImage} alt="Featured" className='bg-primary rounded-[10px] max-w-[450px]' />
+      <div className='w-[90%] max-w-[465px] order-1 lg:order-1'>
+        <img src={featuredImage} alt="Featured" className='bg-primary rounded-[10px] object-cover w-full h-[100%]' />
+
+      </div>
     </div>
   )
 }

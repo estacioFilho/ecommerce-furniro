@@ -33,23 +33,26 @@ const Card = ({ product }: CardProps) => {
           </li>
         </ul>
       </div>
-      <div className='flex flex-col h-full'>
-        <div className='relative flex-shrink-0 w-full'>
-          {product.discount > 0 ? (
-            <div className='w-[48px] h-[48px] text-[1rem] flex items-center justify-center rounded-full bg-green-accents text-light absolute right-3 top-4'>
-              <p>-{product.discount * 100}%</p>
-            </div>
-          ) : product.isNew ? (
-            <div className='w-[48px] h-[48px] text-[1rem] flex items-center justify-center rounded-full bg-red-accents text-light absolute right-3 top-4'>
-              <p>New</p>
-            </div>
-          ) : null}
-
-          <img
-            className='w-full h-full object-cover rounded'
-            src={product.images[0]}
-            alt={product.name}
-          />
+      <div className='flex flex-col w-[285px] h-[446px] '>
+        <div className='relative w-full h-full '>
+          {
+            product.discount > 0 ? (
+              <div className='w-[48px] h-[48px] text-[1rem] flex items-center justify-center rounded-full bg-green-accents text-light absolute right-3 top-4'>
+                <p>-{product.discount * 100}%</p>
+              </div>
+            ) : product.isNew ? (
+              <div className='w-[48px] h-[48px] text-[1rem] flex items-center justify-center rounded-full bg-red-accents text-light absolute right-3 top-4'>
+                <p>New</p>
+              </div>
+            ) : null
+          }
+          <div className='w-full h-full'>
+            <img
+              className='w-full h-full object-cover rounded'
+              src={product.images[0]}
+              alt={product.name}
+            />
+          </div>
         </div>
 
         <div className='bg-gray-bg p-[1rem] flex flex-col gap-4 flex-grow'>

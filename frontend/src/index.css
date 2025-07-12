@@ -14,7 +14,8 @@
   --color-green-accents: #2EC1AC;
   --color-dark-bg: #73717199;
 
-  --text-sm: clamp(1.5rem,2.5vw, 2.125rem)
+  --text-sM: clamp(1.5rem, 2.5vw, 2.125rem);
+  --spacing-s: clamp(1rem, 3.33vw, 2rem);
   
 
 }
@@ -44,6 +45,15 @@
   color: var(--color-gray-text);
   padding: 1rem;
   border-radius: 15px;
+}
+
+.button-filter{
+  background-color: var(--color-secondary);
+  border: 2px solid var(--color-secondary);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-light);
+  padding: 0.5rem 3rem;
 }
 
 body{
