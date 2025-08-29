@@ -3,7 +3,7 @@ import SectionTitle from "./SectionTitle"
 
 const SectionOurProducts = () => {
   return (
-    <section>
+    <section className="container mx-auto my-auto">
       <SectionTitle text='Our Products' />
       <ProductList />
     </section>

@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Living Room",
+    "isDisabled": false,
+    "rangeId": 1
+  },
+  {
+    "name": "Bedroom",
+    "isDisabled": false,
+    "rangeId": 1
+  },
+  {
+    "name": "Dining Room",
+    "isDisabled": false,
+    "rangeId": 2
+  },
+  {
+    "name": "Office",
+    "isDisabled": false,
+    "rangeId": 2
+  },
+  {
+    "name": "Outdoor",
+    "isDisabled": false,
+    "rangeId": 3
+  }
+]

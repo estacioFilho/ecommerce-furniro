@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Modern Furniture",
+    "image": "https://i.pinimg.com/736x/9a/47/52/9a475241bbc8a526ecd3bc58f5471d6e.jpg",
+    "isDisabled": false
+  },
+  {
+    "name": "Classic Collection",
+    "image": "https://i.pinimg.com/1200x/1a/f0/a3/1af0a3e98e717718e4422a8619e11b93.jpg",
+    "isDisabled": false
+  },
+  {
+    "name": "Outdoor Living",
+    "image": "https://i.pinimg.com/736x/24/73/5b/24735b574537ce7298b693bd120024ff.jpg",
+    "isDisabled": false
+  },
+  {
+    "name": "Office Essentials",
+    "image": "https://i.pinimg.com/736x/69/4c/de/694cde46de7ec766cee94d3cfa2b23f8.jpg",
+    "isDisabled": false
+  },
+  {
+    "name": "Bedroom Comforts",
+    "image": "https://i.pinimg.com/736x/a8/16/aa/a816aacbbdcdabcfa7daa416d1b03754.jpg",
+    "isDisabled": false
+  }
+]
